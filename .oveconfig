@@ -1,0 +1,20 @@
+# where to fetch GODOT
+GODOT_DL_URL                         https://github.com/godotengine/godot-builds/releases/download
+
+# to avoid initial "ove fetch" command
+OVE_AUTO_CLONE                       1
+
+# container name
+OVE_DISTROCHECK_CONTAINER_NAME       dg
+
+# user password within the container
+OVE_DISTROCHECK_CONTAINER_USER_PASS  1234
+
+# steps to perform for "ove distrocheck ..."
+OVE_DISTROCHECK_STEPS                verbose X user running ove
+
+# e.g. x86_64
+OVE_OS_MACHINE                       $(uname -m)
+
+# use 'git am' when applying patches
+OVE_PATCH_REPOS_METHOD               am

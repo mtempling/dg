@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC2154
+
+set -e
+set -x
+
+# TODO: correct location?
+mkdir \
+	-p \
+	-v \
+	"${HOME}"/.local/share/godot/export_templates/"${godot_version}".stable
+
+# unpack Godot templates
+unzip \
+	-d "${HOME}"/.local/share/godot/export_templates/"${godot_version}".stable/ \
+	-o \
+	"${OVE_GLOBAL_STATE_DIR}"/Godot_v"${godot_version}"-stable_export_templates.tpz
+
+# move templates to correct location
+(cd "${HOME}"/.local/share/godot/export_templates/"${godot_version}".stable/templates; mv -- * ../)
+
+# unpack Godot binary
+mkdir \
+	-p \
+	-v \
+	"$OVE_STAGE_DIR"/usr/bin/
+
+unzip \
+	-d "$OVE_STAGE_DIR"/usr/bin/ \
+	-o \
+	"${OVE_GLOBAL_STATE_DIR}"/Godot_v"${godot_version}"-stable_linux."${OVE_OS_MACHINE}".zip
+
+# make Godot (='godot') available
+cd "$OVE_STAGE_DIR"/usr/bin
+ln \
+	-f \
+	-s \
+	Godot_v"${godot_version}"-stable_linux."${OVE_OS_MACHINE}" godot

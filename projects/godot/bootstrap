@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -e
+
+# shellcheck disable=SC2154
+f="Godot_v${godot_version}-stable_export_templates.tpz"
+ove-echo cyan "wget $f"
+wget \
+	-nc \
+	-O "${OVE_GLOBAL_STATE_DIR}"/"${f}" \
+	"${GODOT_DL_URL}"/"${godot_version}"-stable/"${f}" || true
+
+f="Godot_v${godot_version}-stable_linux.${OVE_OS_MACHINE}.zip"
+ove-echo cyan "wget $f"
+wget \
+	-nc \
+	-O "${OVE_GLOBAL_STATE_DIR}"/"${f}" \
+	"${GODOT_DL_URL}"/"${godot_version}"-stable/"${f}" || true

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+mkdir \
+	-p \
+	-v \
+	"$OVE_STAGE_DIR"/usr/bin
+
+cp \
+	-a\
+	-v \
+	dmcetraceGUI/{dmce-gui,dmce-gui.pck} \
+	"$OVE_STAGE_DIR"/usr/bin

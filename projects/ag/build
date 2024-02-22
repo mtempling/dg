@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [ -e autogen.sh ]; then
+	make
+else
+	./build.sh --prefix="${OVE_STAGE_DIR}/usr"
+fi

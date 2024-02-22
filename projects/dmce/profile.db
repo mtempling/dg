@@ -1,0 +1,5 @@
+# configuration file for "ove dmce ..."
+#
+# name:command:args
+default:trace:-C 1 trace-mc
+ag:trace:-C 1 -e foo.c trace-mc

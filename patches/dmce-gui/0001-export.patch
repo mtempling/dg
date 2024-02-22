@@ -1,0 +1,92 @@
+From 30a677d027414ca4ca08b29153b3fb45b2772295 Mon Sep 17 00:00:00 2001
+From: Magnus Templing <magnus.templing@ericsson.com>
+Date: Fri, 16 Jun 2023 11:21:47 +0200
+Subject: [PATCH] export
+
+---
+ dmcetraceGUI/export_presets.cfg | 27 +++++++++++++++++++++++
+ export.sh                       | 38 +++++++++++++++++++++++++++++++++
+ 2 files changed, 65 insertions(+)
+ create mode 100644 dmcetraceGUI/export_presets.cfg
+ create mode 100755 export.sh
+
+diff --git a/dmcetraceGUI/export_presets.cfg b/dmcetraceGUI/export_presets.cfg
+new file mode 100644
+index 0000000..253db97
+--- /dev/null
++++ b/dmcetraceGUI/export_presets.cfg
+@@ -0,0 +1,27 @@
++[preset.0]
++name="Linux"
++platform="Linux/X11"
++runnable=true
++dedicated_server=false
++custom_features=""
++export_filter="all_resources"
++include_filter=""
++exclude_filter="windows*"
++export_path="./dmce-gui"
++
++[preset.0.options]
++binary_format/architecture="x86_64"
++
++[preset.1]
++name="Windows"
++platform="Windows Desktop"
++runnable=true
++dedicated_server=false
++custom_features=""
++export_filter="all_resources"
++include_filter=""
++exclude_filter="windows*"
++export_path="./dmce-gui.exe"
++
++[preset.1.options]
++binary_format/64_bits=true
+diff --git a/export.sh b/export.sh
+new file mode 100755
+index 0000000..6798645
+--- /dev/null
++++ b/export.sh
+@@ -0,0 +1,38 @@
++#!/usr/bin/env bash
++
++set -e
++
++function _init() {
++	if ! command -v godot > /dev/null; then
++		echo "error: put 'godot' in PATH"
++		exit 1
++	fi
++	f=$(mktemp)
++	trap 'rm $f' EXIT
++	cd dmcetraceGUI || exit 1
++}
++
++function _export() {
++	local err
++
++	err=0
++	echo "$1"
++	for _ in 1 2; do
++		godot --export-release "$1" --headless |& tee "$f"
++		if ! grep -q -i "error" "$f"; then
++			# no errors
++			return 0
++		fi
++
++		err=$((err + 1))
++		if [ $err -eq 2 ]; then
++			echo "error: export '$1' failed two times in a row - check log"
++			return 1
++		fi
++	done
++}
++
++_init
++_export "Linux"
++_export "Windows"
++du --time -hs dmce-gui*
+-- 
+2.25.1
+

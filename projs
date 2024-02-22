@@ -1,0 +1,116 @@
+---
+base:
+  needs_debian:
+    build-essential
+    pkg-config
+  needs_alpine:
+    build-base
+    pkgconf
+    shadow-login
+  needs_void:
+    base-devel
+    pkg-config
+  needs_arch:
+    base-devel
+    pkgconfig
+  needs_fedora:
+    g++
+    gcc
+    pkgconfig
+
+clang_tools:
+  needs_alpine:
+    clang-extra-tools
+  needs_arch:
+    clang
+  needs_debian:
+    clang-tools
+  needs_fedora:
+    clang-tools-extra
+  needs_suse:
+    clang
+  needs_void:
+    clang-tools-extra
+
+dmce:
+  deps:
+    base
+    clang_tools
+    xz
+  needs:
+    fakeroot
+    python3
+    wget
+  needs_alpine:
+    py3-numpy
+    py3-colorama
+  needs_debian:
+    dpkg
+    python3-numpy
+    python3-colorama
+  needs_fedora:
+    python3-numpy
+    python3-colorama
+  path:
+    dmce
+
+xz:
+  needs_alpine:
+    xz-dev
+  needs_fedora:
+    xz-devel
+  needs_debian:
+    xz-utils
+
+ag:
+  deps:
+    base
+    xz
+  needs:
+    automake
+    make
+    python3
+  needs_arch:
+    pcre
+  needs_alpine:
+    autoconf
+    pcre-dev
+    py3-pip
+    zlib-dev
+  needs_fedora:
+    gcc
+    pcre-devel
+    zlib-devel
+  needs_debian:
+    liblzma-dev
+    libpcre3-dev
+    python3-cram
+    zlib1g-dev
+  path:
+    ag
+
+screencast:
+  needs:
+    ffmpeg
+    recordmydesktop
+    xdotool
+
+dmce_gui:
+  deps:
+    dmce
+    godot
+  path:
+    dmce-gui
+
+godot:
+  needs:
+    unzip
+  path:
+    godot
+  version:
+    4.0.3
+
+dg:
+  deps:
+    dmce_gui
+    screencast

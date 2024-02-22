@@ -1,0 +1,5 @@
+# name       fetch URL                                          push URL                                           rev
+.ove         https://github.com/Ericsson/ove.git                https://github.com/Ericsson/ove.git                master
+ag           https://github.com/ggreer/the_silver_searcher.git  https://github.com/ggreer/the_silver_searcher.git  master
+dmce         https://github.com/PatrikAAberg/dmce.git           git@github.com:PatrikAAberg/dmce.git               master
+dmce-gui     https://github.com/PatrikAAberg/dmce-gui           https://github.com/PatrikAAberg/dmce-gui           main

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -e
+
+ove buildme-parallel "$OVE_ACTIVE_PROJECT_NAME"

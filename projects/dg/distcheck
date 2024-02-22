@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# build ag
+ove-buildme ag
+
+# run ag with these args
+TRACE_LAZY_CMD_ARGS="--workers $(getconf _NPROCESSORS_ONLN) asdf /usr"
+export TRACE_LAZY_CMD_ARGS
+
+# record OVE commands from now on
+export OVE_RECORD_IT=1
+
+# terminal GUI
+export TRACE_LAZY_TIMEOUT=0
+export TRACE_LAZY_VIEWER=t
+ove dmce trace-lazy ag
+
+# Godot GUI
+export TRACE_LAZY_VIEWER=g
+export TRACE_LAZY_GUI_ARGS="--rendering-driver opengl3"
+ove dmce trace-lazy ag
