@@ -108,7 +108,7 @@ godot:
   path:
     godot
   version:
-    4.0.3
+    4.0.4
 
 dg:
   deps:
