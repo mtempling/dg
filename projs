@@ -109,6 +109,9 @@ godot:
     godot
   version:
     4.0.4
+  config:
+    GODOT_DL_URL
+    OVE_OS_MACHINE
 
 dg:
   deps:

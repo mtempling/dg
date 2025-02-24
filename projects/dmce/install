@@ -11,7 +11,7 @@ if ! ove-dist dmce; then
 	exit 1
 elif ! d="$(find "${OVE_ARCHIVE_DIR:?}" -mindepth 1 -mindepth 1 -name 'dmce-*.xz' -type f)"; then
 	exit 1
-elif [ "x${d}" = "x" ]; then
+elif [ "${d}" = "" ]; then
 	echo "error: DMCE package not found"
 	exit 1
 elif ! tar -C "$OVE_STAGE_DIR" -xf "${d}"; then
