@@ -5,13 +5,13 @@ GODOT_DL_URL                         https://github.com/godotengine/godot-builds
 OVE_AUTO_CLONE                       1
 
 # container name
-OVE_DISTROCHECK_CONTAINER_NAME       dg
+OVE_INSTANCE_NAME                    dg
 
 # user password within the container
-OVE_DISTROCHECK_CONTAINER_USER_PASS  1234
+OVE_INSTANCE_USER_PASS               1234
 
 # steps to perform for "ove distrocheck ..."
-OVE_DISTROCHECK_STEPS                verbose X user running ove
+OVE_INSTANCE_STEPS                   verbose X user running ove
 
 # e.g. x86_64
 OVE_OS_MACHINE                       $(uname -m)

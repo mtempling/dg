@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -e
+
+f=$(mktemp)
+cat > "$f" << EOF
+[Desktop Entry]
+Type=Application
+Name=${OVE_INSTANCE_NAME:?}
+Exec=xfce4-terminal --fullscreen -e "bash -c 'cd $OVE_BASE_DIR; source ove; ove entry dg'"
+Terminal=false
+EOF
+
+ove echo cyan "create .config/autostart"
+ssh "${OVE_INSTANCE_NAME:?}" "mkdir -pv .config/autostart"
+
+ove echo cyan "create autostart file"
+scp -q "$f" "${OVE_INSTANCE_NAME:?}":.config/autostart/"${OVE_INSTANCE_NAME:?}".desktop
+
+rm "$f"
+
+ove echo cyan "restart ${OVE_INSTANCE_NAME:?} container"
+incus restart "${OVE_INSTANCE_NAME:?}"
