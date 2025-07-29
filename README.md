@@ -48,7 +48,7 @@ ove digraph
 curl -sSL https://raw.githubusercontent.com/Ericsson/ove/master/setup | bash -s dg https://github.com/mtempling/dg.git
 cd dg
 source ove
-ove create-instance base ubuntu/22.04/amd64
+ove create-instance base debian/12/amd64
 ```
 
 The "ove create-instance..." command will first make sure that both
@@ -57,11 +57,11 @@ The "ove create-instance..." command will first make sure that both
 incus installation is just a minimal installation.
 
 When incus and Xpra has been installed, create-instance will continue and launch an
-incus container based on Ubuntu 22.04. A few packages will be installed within
+incus container based on Debian 12. A few packages will be installed within
 the container:
 
 * openssh
-* OVE packages
+* packages needed to run OVE
 * Xfce
 * Xpra
 
@@ -83,7 +83,7 @@ using the Godot GUI.
 Attach to the container and peek into the action:
 
 ```
-xpra attach --ssh=ssh ssh:${OVE_INSTANCE_NAME:?}
+xpra attach --ssh=ssh ssh://${OVE_INSTANCE_NAME:?}
 ```
 
 Find the recorded screencast:
@@ -95,7 +95,7 @@ find $OVE_LOG_DIR -type f -name "*-ove-dmce-${OVE_INSTANCE_NAME:?}-dg.mp4"
 Remove the container:
 
 ```
-incus delete -f ${OVE_INSTANCE_NAME:?}
+ove delete-instance ${OVE_INSTANCE_NAME:?}
 ```
 
 ## configuration
