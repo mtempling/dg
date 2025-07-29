@@ -10,7 +10,7 @@ OVE_INSTANCE_NAME                    dg
 # user password within the container
 OVE_INSTANCE_USER_PASS               1234
 
-# steps to perform for "ove distrocheck ..."
+# steps to perform for "ove create-instance ..."
 OVE_INSTANCE_STEPS                   verbose X user running ove
 
 # e.g. x86_64
